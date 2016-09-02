@@ -60,6 +60,49 @@ void populate_same_diff_Str(char *input1, char *input2, char *same, char *diff)
 	}
 	*diff='\0';
 	*same = '\0';
+} 
+
+void populate_same_diff_str_v2(char *input1, char *input2, char *same, char *diff) 
+{
+	char *iter1, *iter2;
+	int refCount[ASCII_MAX]={0}; 
+	iter2= input2; 
+	if (!input1 || !input2 || !same || !diff)
+		return;
+	while (*iter2 !='\0')
+	{
+		refCount[*iter2]++;
+		iter2++;
+	}
+
+	iter1 = input1;
+    while (*iter1!= '\0') 
+    {
+            if (refCount[*iter1]) 
+            {
+                    refCount[*iter1]--;
+                    *same=*iter1;
+                    same++;
+            }
+            else 
+            {
+                    *diff=*iter1;
+                    diff++;
+            }
+            iter1++;
+    }
+    iter2=input2; 
+    while (*iter2!='\0')
+    {
+            if (refCount[*iter2])
+            {
+                    *diff = *iter2;
+                    diff++;
+            }
+            iter2++;
+    } 
+	*diff='\0';
+	*same = '\0';
 }
 int main() 
 {
@@ -72,7 +115,7 @@ int main()
 				scanf("%s", input1);
 				printf ("\n Enter second input string, max Len %d ", MAX_LEN);
 				scanf("%s", input2);
-				populate_same_diff_Str(input1, input2, same, diff);
+				populate_same_diff_str_v2(input1, input2, same, diff);
 				printf ("\n Same String is %s", same);
 				printf ("\n Diff String is %s", diff);
 		}
