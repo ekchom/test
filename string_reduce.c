@@ -1,4 +1,5 @@
 #if 0 
+
 Shil has a string, , consisting of  lowercase English letters. In one operation, he can delete any pair of adjacent letters with same value. For example, string "" would become either "" or "" after  operation.
 
 Shil wants to reduce  as much as possible. To do this, he will repeat the above operation as many times as it can be performed. Help Shil out by finding and printing s non-reducible form!
@@ -112,57 +113,3 @@ int string_reduce (char *string)
     } 
     return compress_string(string);
 } 
-#if 0
-void string_reduce (char *string) 
-{
-        int i,j,iter;
-        int found=1;
-        while (found ==  1)
-        {
-                found =0;
-                iter=0;
-                while (iter<strlen(string))
-
-                {
-                    i = iter;
-                    j=i+1;
-                    if ((string[i] == string[j]) && (string[i] != SPECIAL_CHAR)) 
-                    {
-                            string[i]=string[j]=SPECIAL_CHAR;
-                            iter=j+1;
-                            found =1;
-                    } 
-                    else 
-                    {
-                            iter++;
-                    }
-                }
-                i=0;
-                iter=0;
-                while (i<strlen(string))
-                {
-                        if (string[i] == SPECIAL_CHAR) 
-                        {
-                                j=i+1;
-                                while ((string[j] == SPECIAL_CHAR) && (j<strlen(string)))
-                                        j++;
-                                if (j<strlen(string))
-                                {
-                                    string[iter]=string[j]; 
-                                    i=j+1;
-                                    iter++;
-                                } 
-                                else 
-                                       i++; 
-                        }
-                        else  {
-                                iter++;
-                                i++;
-                        }
-                }
-        }
-        string[iter]='\0';
-} 
-#endif
-
-
